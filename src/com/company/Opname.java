@@ -5,7 +5,7 @@ import java.util.Date;
 public class Opname extends Reservering {
     private String producer;
 
-    public Opname(int id, int aantalPersonen, Date date, String producer) {
+    public Opname(int id, int aantalPersonen, String date, String producer) {
         super(id, aantalPersonen, date);
         if(producer == null){
             throw new IllegalArgumentException("Geef een producer aan");

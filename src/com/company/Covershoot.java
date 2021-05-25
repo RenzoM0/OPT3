@@ -6,7 +6,7 @@ public class Covershoot extends Reservering {
 
     private String locatie;
 
-    public Covershoot(int id, int aantalPersonen, Date date, String locatie) {
+    public Covershoot(int id, int aantalPersonen, String date, String locatie) {
         super(id, aantalPersonen, date);
         this.locatie = locatie;
     }
