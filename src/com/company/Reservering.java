@@ -10,27 +10,16 @@ public abstract class Reservering {
     private int id;
     private int aantalPersonen;
     private String omschrijving;
-    private Date date;
+    private String date;
     private Date currentDate = new Date(System.currentTimeMillis());
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/uuuu");
-
     public Reservering(int id, int aantalPersonen, String date) {
-        Date input = null;
-        try {
-             input = dateFormat.parse(date);
-        }catch (ParseException e) {
-            e.printStackTrace();
-        }
         if(aantalPersonen < 2 || aantalPersonen > 6){
             throw new IllegalArgumentException("Aantal personen moeten minmaal 2 en max 6 zijn");
         }
-        /*if(input == null || input.before(currentDate)){
-            throw new IllegalArgumentException("Voer een geldige datum in");
-        }*/
         this.id = id;
         this.aantalPersonen = aantalPersonen;
         this.omschrijving = "Reservering";
-        this.date = input;
+        this.date = date;
     }
 
     public int getId() {
@@ -57,11 +46,11 @@ public abstract class Reservering {
         this.omschrijving = omschrijving;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

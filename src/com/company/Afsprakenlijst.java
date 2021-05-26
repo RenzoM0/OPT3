@@ -6,9 +6,14 @@ public class Afsprakenlijst {
     private static Afsprakenlijst afsprakenlijst;
     private static ArrayList<Reservering> reserveringen;
 
-    private Afsprakenlijst(){}
+    private Afsprakenlijst(){
+        reserveringen = new ArrayList<>();
+    }
 
     public static Afsprakenlijst getInstance() {
+        if(afsprakenlijst == null){
+            afsprakenlijst = new Afsprakenlijst();
+        }
         return afsprakenlijst;
     }
 
@@ -20,7 +25,13 @@ public class Afsprakenlijst {
     }
 
     public void AddReservering(Reservering reservering){
-        reserveringen.add(reservering);
+        if(reserveringen.isEmpty()) {
+            reserveringen.add(reservering);
+        } else {
+            if (CheckDatum(reservering)) {
+                reserveringen.add(reservering);
+            } else throw new IllegalArgumentException("Datum is vol");
+        }
     }
     public boolean CheckDatum(Reservering reservering){
         for (Reservering res : reserveringen){
