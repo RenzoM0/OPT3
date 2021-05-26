@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.Date;
-
 public class Clipshoot extends Reservering {
     private String editor;
 

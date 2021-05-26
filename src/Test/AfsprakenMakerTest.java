@@ -17,21 +17,21 @@ class AfsprakenMakerTest {
         * */
         AfsprakenMaker planner = new AfsprakenMaker();
 
-        Reservering reservering1 = planner.maakReservering(1,2,"16/10/2021","clipshoot","Eric");
-        Reservering reservering2 = planner.maakReservering(2,2,"19/10/2021","covershoot",null);
+        Reservering reservering1 = planner.MaakReservering(1,2,"16/10/2021","clipshoot","Eric");
+        Reservering reservering2 = planner.MaakReservering(2,2,"19/10/2021","covershoot",null);
 
         assertThrows(IllegalArgumentException.class, new Executable() {
 
             @Override
             public void execute() throws Throwable {
-                Reservering reservering3 = planner.maakReservering(3,2,"18/10/2021","opname",null);
+                Reservering reservering3 = planner.MaakReservering(3,2,"18/10/2021","opname",null);
             }
         });
         assertThrows(IllegalArgumentException.class, new Executable() {
 
             @Override
             public void execute() throws Throwable {
-                Reservering reservering4 = planner.maakReservering(4,1,"17/11/2021","clipshoot","Jay");
+                Reservering reservering4 = planner.MaakReservering(4,1,"17/11/2021","clipshoot","Jay");
             }
         });
 

@@ -1,17 +1,11 @@
 package com.company;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 public abstract class Reservering {
     private int id;
     private int aantalPersonen;
     private String omschrijving;
     private String date;
-    private Date currentDate = new Date(System.currentTimeMillis());
+
     public Reservering(int id, int aantalPersonen, String date) {
         if(aantalPersonen < 2 || aantalPersonen > 6){
             throw new IllegalArgumentException("Aantal personen moeten minmaal 2 en max 6 zijn");
