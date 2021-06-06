@@ -27,15 +27,15 @@ public class Opname extends Reservering {
     boolean IsCoverShoot() {return false;}
 
     @Override
-    void AddEditor() {
-
+    String AddEditor() {
+        return "";
     }
     @Override
-    void AddLocatie() {
-
+    String AddLocatie() {
+        return "";
     }
     @Override
-    void AddProducer() {
-        System.out.println("De producer is " + this.getProducer());
+    String AddProducer() {
+        return "\nDe producer is " + this.getProducer();
     }
 }

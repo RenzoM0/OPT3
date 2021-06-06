@@ -7,6 +7,7 @@ public class Covershoot extends Reservering {
     public Covershoot(int aantalPersonen, String date, String locatie) {
         super(aantalPersonen, date);
         this.locatie = locatie;
+        this.setOmschrijving("Covershoot");
     }
 
     public String getLocatie() {
@@ -24,15 +25,15 @@ public class Covershoot extends Reservering {
     boolean IsClipShoot() {return false;}
 
     @Override
-    void AddEditor() {
-
+    String AddEditor() {
+        return "";
     }
     @Override
-    void AddProducer() {
-
+    String AddProducer() {
+        return "";
     }
     @Override
-    void AddLocatie() {
-        System.out.println("Clipshoot wordt gehouden op " + this.getLocatie());
+    String AddLocatie() {
+        return "\nClipshoot wordt gehouden op locatie " + this.getLocatie();
     }
 }

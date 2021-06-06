@@ -28,14 +28,15 @@ public class Clipshoot extends Reservering {
     boolean IsCoverShoot() {return false;}
 
     @Override
-    void AddProducer() {
+    String AddProducer() {
+        return "";
     }
     @Override
-    void AddLocatie() {
-
+    String AddLocatie() {
+        return "";
     }
     @Override
-    void AddEditor() {
-        System.out.println("De editor is " + this.getEditor());
+    String AddEditor() {
+       return "\nDe editor is " + this.getEditor();
     }
 }

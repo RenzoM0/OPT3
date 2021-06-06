@@ -1,5 +1,8 @@
 package Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Afsprakenlijst {
@@ -13,6 +16,8 @@ public class Afsprakenlijst {
     public static Afsprakenlijst getInstance() {
         if(afsprakenlijst == null){
             afsprakenlijst = new Afsprakenlijst();
+            afsprakenlijst.AddReservering(new Covershoot(4,"16/07/2023","NDSM werf"));
+            afsprakenlijst.AddReservering(new Clipshoot(3,"17/07/2023","Jan Peters"));
         }
         return afsprakenlijst;
     }
@@ -22,6 +27,11 @@ public class Afsprakenlijst {
     }
     public static void setReserveringen(ArrayList<Reservering> reserveringen) {
         Afsprakenlijst.reserveringen = reserveringen;
+    }
+    public static ObservableList<Reservering> getOlist(){
+        ObservableList<Reservering> oList = FXCollections.observableArrayList();
+        oList.addAll(reserveringen);
+        return oList;
     }
 
     public void AddReservering(Reservering reservering){
@@ -35,7 +45,7 @@ public class Afsprakenlijst {
     }
     public boolean CheckDatum(Reservering reservering){
         for (Reservering res : reserveringen){
-            if ( res.getDate() == reservering.getDate()){
+            if (res.getDate().equals(reservering.getDate())){
                 return false;
             }
         }

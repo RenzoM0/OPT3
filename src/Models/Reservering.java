@@ -18,25 +18,26 @@ public abstract class Reservering {
         this.date = date;
     }
 
-    final void GeefOmschrijving(){
-        AddPersonen();
+    public String GeefOmschrijving(){
+        String comment = AddPersonen();
         if(IsOpname()){
-            AddProducer();
+            comment += AddProducer();
         }
         if(IsClipShoot()){
-            AddEditor();
+            comment += AddEditor();
         }
         if(IsCoverShoot()){
-            AddLocatie();
+            comment += AddLocatie();
         }
+        return comment;
     }
 
-    public void AddPersonen(){
-        System.out.println("Er zijn " + this.getAantalPersonen() + " toegevoegd aan deze reservering");
+    public String AddPersonen(){
+        return "Er zijn " + this.getAantalPersonen() + " personen toegevoegd aan deze reservering";
     }
-    abstract void AddEditor();
-    abstract void AddProducer();
-    abstract void AddLocatie();
+    abstract String AddEditor();
+    abstract String AddProducer();
+    abstract String AddLocatie();
 
     boolean IsOpname(){return true;}
     boolean IsClipShoot(){return true;}

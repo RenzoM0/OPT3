@@ -2,20 +2,12 @@ package Controller;
 
 import Models.AfsprakenMaker;
 import Models.Afsprakenlijst;
+import Models.DateHandler;
 import Models.Reservering;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import java.time.format.DateTimeFormatter;
 
 public class HomeScreenController {
 
@@ -34,38 +26,48 @@ public class HomeScreenController {
     @FXML
     private TableColumn<Reservering, String> DatumColmn, TypeResColumn;
 
+    private DateHandler dateHandler = new DateHandler();
     private Afsprakenlijst lijst = Afsprakenlijst.getInstance();
     private AfsprakenMaker maker = new AfsprakenMaker();
-    private ObservableList<Reservering> oList = FXCollections.observableArrayList(Afsprakenlijst.getReserveringen());
 
     @FXML
     public void initialize(){
         fillAantalPersonenBttn();
         fillTypeReserveringBttn();
-        DatumColmn.setCellValueFactory(new PropertyValueFactory<Reservering, String>("Datum"));
-        TypeResColumn.setCellValueFactory(new PropertyValueFactory<Reservering, String>("Soort Reservering"));
-        AfsprakenLijstTable.setItems(oList);
+        DatumColmn.setCellValueFactory(new PropertyValueFactory<Reservering, String>("date"));
+        TypeResColumn.setCellValueFactory(new PropertyValueFactory<Reservering, String>("omschrijving"));
+        AfsprakenLijstTable.setItems(Afsprakenlijst.getOlist());
     }
     @FXML
     void GeefOmschrijving(MouseEvent event) {
+        showOmschrijving(Alert.AlertType.INFORMATION, "Reservering Omschrijving",AfsprakenLijstTable.getSelectionModel().getSelectedItem().GeefOmschrijving());
+    }
 
+    private static void showOmschrijving(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
     }
 
     @FXML
     void MaakAfspraak(MouseEvent event) {
-        lijst.AddReservering(maker.MaakReservering(AantalPersonenBttn.getValue(), DatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),TypeReserveringBttn.getValue(),SpecialValueLabel.getText()));
+        lijst.AddReservering(maker.MaakReservering(AantalPersonenBttn.getSelectionModel().getSelectedItem(), dateHandler.getDateFormat(DatePicker.getValue()),TypeReserveringBttn.getSelectionModel().getSelectedItem(),SpecialValueLabel.getText()));
         AfsprakenLijstTable.getItems().clear();
-        AfsprakenLijstTable.setItems(oList);
+        AfsprakenLijstTable.setItems(Afsprakenlijst.getOlist());
     }
 
     private void fillAantalPersonenBttn(){
         for(int i = Reservering.getMin(); i < Reservering.getMax() + 1; i++){
             AantalPersonenBttn.getItems().add(i);
         }
+        AantalPersonenBttn.setValue(2);
     }
     private void fillTypeReserveringBttn(){
-        TypeReserveringBttn.getItems().add("Clipshoot");
-        TypeReserveringBttn.getItems().add("Opname");
-        TypeReserveringBttn.getItems().add("Covershoot");
+        TypeReserveringBttn.getItems().add("clipshoot");
+        TypeReserveringBttn.getItems().add("opname");
+        TypeReserveringBttn.getItems().add("covershoot");
+        TypeReserveringBttn.setValue("Clipshoot");
     }
 }
