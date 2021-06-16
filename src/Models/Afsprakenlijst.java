@@ -22,13 +22,13 @@ public class Afsprakenlijst {
         return afsprakenlijst;
     }
 
-    public static ArrayList<Reservering> getReserveringen() {
+    public ArrayList<Reservering> getReserveringen() {
         return reserveringen;
     }
-    public static void setReserveringen(ArrayList<Reservering> reserveringen) {
+    public void setReserveringen(ArrayList<Reservering> reserveringen) {
         Afsprakenlijst.reserveringen = reserveringen;
     }
-    public static ObservableList<Reservering> getOlist(){
+    public ObservableList<Reservering> getOlist(){
         ObservableList<Reservering> oList = FXCollections.observableArrayList();
         oList.addAll(reserveringen);
         return oList;
@@ -43,7 +43,7 @@ public class Afsprakenlijst {
             } else throw new IllegalArgumentException("Datum is vol");
         }
     }
-    public boolean CheckDatum(Reservering reservering){
+    private boolean CheckDatum(Reservering reservering){
         for (Reservering res : reserveringen){
             if (res.getDate().equals(reservering.getDate())){
                 return false;

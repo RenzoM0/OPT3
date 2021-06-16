@@ -2,15 +2,22 @@ package Models;
 
 import java.util.Locale;
 
-public class AfsprakenMaker {
+public class AfsprakenMaker extends AfsprakenMakerFactory {
 
-    public Reservering MaakReservering(int aantalPersonen, String date, String typeReservering, String specialValue){
-        if(typeReservering.toLowerCase(Locale.ROOT).equals("clipshoot")){
-            return new Clipshoot(aantalPersonen,date,specialValue);
-        } else if (typeReservering.toLowerCase(Locale.ROOT).equals("opname")) {
-            return new Opname(aantalPersonen, date, specialValue);
-        } else if (typeReservering.toLowerCase(Locale.ROOT).equals("covershoot")) {
-            return new Covershoot(aantalPersonen, date, specialValue);
-        } else return null;
+    @Override
+    public Reservering maakReservering(int aantalPersonen, String date, String typeReservering, String specialValue) {
+        Reservering reservering = null;
+        switch (typeReservering.toLowerCase(Locale.ROOT)) {
+            case "clipshoot":
+                reservering = new Clipshoot(aantalPersonen, date, specialValue);
+                break;
+            case "opname":
+                reservering = new Opname(aantalPersonen, date, specialValue);
+                break;
+            case "covershoot":
+                reservering = new Covershoot(aantalPersonen, date, specialValue);
+                break;
+        }
+        return reservering;
     }
 }

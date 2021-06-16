@@ -36,7 +36,7 @@ public class HomeScreenController {
         fillTypeReserveringBttn();
         DatumColmn.setCellValueFactory(new PropertyValueFactory<Reservering, String>("date"));
         TypeResColumn.setCellValueFactory(new PropertyValueFactory<Reservering, String>("omschrijving"));
-        AfsprakenLijstTable.setItems(Afsprakenlijst.getOlist());
+        AfsprakenLijstTable.setItems(lijst.getOlist());
     }
     @FXML
     void GeefOmschrijving(MouseEvent event) {
@@ -53,9 +53,9 @@ public class HomeScreenController {
 
     @FXML
     void MaakAfspraak(MouseEvent event) {
-        lijst.AddReservering(maker.MaakReservering(AantalPersonenBttn.getSelectionModel().getSelectedItem(), dateHandler.getDateFormat(DatePicker.getValue()),TypeReserveringBttn.getSelectionModel().getSelectedItem(),SpecialValueLabel.getText()));
+        lijst.AddReservering(maker.maakReservering(AantalPersonenBttn.getSelectionModel().getSelectedItem(), dateHandler.getDateFormat(DatePicker.getValue()),TypeReserveringBttn.getSelectionModel().getSelectedItem(),SpecialValueLabel.getText()));
         AfsprakenLijstTable.getItems().clear();
-        AfsprakenLijstTable.setItems(Afsprakenlijst.getOlist());
+        AfsprakenLijstTable.setItems(lijst.getOlist());
     }
 
     private void fillAantalPersonenBttn(){
@@ -68,6 +68,6 @@ public class HomeScreenController {
         TypeReserveringBttn.getItems().add("clipshoot");
         TypeReserveringBttn.getItems().add("opname");
         TypeReserveringBttn.getItems().add("covershoot");
-        TypeReserveringBttn.setValue("Clipshoot");
+        TypeReserveringBttn.setValue("clipshoot");
     }
 }
