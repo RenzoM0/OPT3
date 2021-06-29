@@ -21,11 +21,9 @@ public class Clipshoot extends Reservering {
     }
 
     @Override
-    boolean IsOpname() {
-        return false;
+    boolean IsClipShoot(){
+        return true;
     }
-    @Override
-    boolean IsCoverShoot() {return false;}
 
     @Override
     String AddProducer() {

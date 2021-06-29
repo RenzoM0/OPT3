@@ -20,11 +20,7 @@ public class Opname extends Reservering {
     }
 
     @Override
-    boolean IsClipShoot() {
-        return false;
-    }
-    @Override
-    boolean IsCoverShoot() {return false;}
+    boolean IsOpname(){return true;}
 
     @Override
     String AddEditor() {
