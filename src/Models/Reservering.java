@@ -39,9 +39,9 @@ public abstract class Reservering {
     abstract String AddProducer();
     abstract String AddLocatie();
 
-    boolean IsOpname(){return true;}
-    boolean IsClipShoot(){return true;}
-    boolean IsCoverShoot(){return true;}
+    boolean IsOpname(){return false;}
+    boolean IsClipShoot(){return false;}
+    boolean IsCoverShoot(){return false;}
 
     public static int getMin() {
         return min;

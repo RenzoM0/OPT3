@@ -18,11 +18,7 @@ public class Covershoot extends Reservering {
     }
 
     @Override
-    boolean IsOpname() {
-        return false;
-    }
-    @Override
-    boolean IsClipShoot() {return false;}
+    boolean IsCoverShoot(){return true;}
 
     @Override
     String AddEditor() {
@@ -34,6 +30,6 @@ public class Covershoot extends Reservering {
     }
     @Override
     String AddLocatie() {
-        return "\nClipshoot wordt gehouden op locatie " + this.getLocatie();
+        return "\nCovershoot wordt gehouden op locatie " + this.getLocatie();
     }
 }
